@@ -15,7 +15,6 @@ public class LivesManager : MonoBehaviour
     {
         instance = this;
         livesImageUI = GameObject.FindGameObjectsWithTag("LiveImageUI");
-        Array.Reverse(livesImageUI);
         UIImageColor = new Color(1, 1, 1, 0.5f);
     }
 
