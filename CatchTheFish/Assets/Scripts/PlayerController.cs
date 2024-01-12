@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool isMoving = true;
+    public bool IsMoving { get => _isMoving; set => _isMoving = value; }
+    private bool _isMoving;
+
     [SerializeField]
     private float moveSpeed;
     private Transform myTransform;
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float leftViewportLimit;
     private float rightViewportLimit;
     private float playerOffset = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +27,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMoving)
+        if (_isMoving)
         {
             SetMovement();
         }
-        if(myTransform.position.x > rightViewportLimit)
+        if (myTransform.position.x > rightViewportLimit)
         {
             SetLimitPlayerPosition(rightViewportLimit);
         }
-        if(myTransform.position.x < leftViewportLimit)
+        if (myTransform.position.x < leftViewportLimit)
         {
             SetLimitPlayerPosition(leftViewportLimit);
         }

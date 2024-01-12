@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FishSpawner : MonoBehaviour
 {
+    public static FishSpawner instance;
     private GameObject[] prefabFishes;
     private Transform myTransform;
     private int randomFish;
@@ -13,16 +14,17 @@ public class FishSpawner : MonoBehaviour
     private float _delaySpawnFishTime;
     public float DelaySpawnFishTime { set => _delaySpawnFishTime = value; }
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         myTransform = GetComponent<Transform>();
-        GetFishes();
-        StartCoroutine("SpawnFishes");
-
     }
 
-    private void GetFishes()
+    public void GetFishes()
     {
         prefabFishes = GameObject.FindGameObjectsWithTag("Fish");
         foreach(var item in prefabFishes)

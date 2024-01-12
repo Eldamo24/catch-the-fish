@@ -26,10 +26,8 @@ public class LivesManager : MonoBehaviour
             liveCounter--;
             SetLiveImageUI();
         }
-        if(liveCounter <= 0)
-        {
-            print("GameOver");
-        }
+        if (liveCounter <= 0)
+            GameManager.instance.GameOver();
     }
 
     private void SetLiveImageUI()
