@@ -12,7 +12,10 @@ public class FishCollision : MonoBehaviour
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "FishDestroyer")
+        {
+            LivesManager.instance.RemoveLife();
             Destroy(gameObject);
-        
+        }
+
     }
 }
