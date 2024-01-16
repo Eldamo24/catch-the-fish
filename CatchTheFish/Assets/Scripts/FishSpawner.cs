@@ -10,6 +10,7 @@ public class FishSpawner : MonoBehaviour
     private Transform myTransform;
     private int randomFish;
     private float randomFishXPosition;
+    private float fishOffset = 0.1f;
     [SerializeField]
     private float _delaySpawnFishTime;
     public float DelaySpawnFishTime { set => _delaySpawnFishTime = value; }
@@ -38,6 +39,10 @@ public class FishSpawner : MonoBehaviour
     {
         randomFish = Random.Range(0, prefabFishes.Length);
         randomFishXPosition = Random.value;
+        if(randomFishXPosition < 0.1f)
+            randomFishXPosition += fishOffset;
+        if (randomFishXPosition >0.9f)
+            randomFishXPosition -= fishOffset;
         GameObject tempFishPrefab = Instantiate(prefabFishes[randomFish],
                                                 new Vector3(
                                                     Camera.main.ViewportToWorldPoint(new Vector3(randomFishXPosition,0,0)).x,
@@ -45,12 +50,6 @@ public class FishSpawner : MonoBehaviour
                                                     0),
                                                 Quaternion.identity);
         tempFishPrefab.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator SpawnFishes()
